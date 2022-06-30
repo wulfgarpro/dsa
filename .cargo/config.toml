@@ -1,0 +1,2 @@
+[alias]
+run-test = "nextest run -- "

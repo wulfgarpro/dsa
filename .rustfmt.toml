@@ -1,0 +1,5 @@
+edition = "2021"
+format_strings = true
+wrap_comments = true
+group_imports = "StdExternalCrate"
+use_small_heuristics = "Max"
