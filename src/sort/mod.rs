@@ -1,18 +1,25 @@
 //! Sorting algorithms.
 
 /// TODO: Document algorithm.
-fn bubble_sort<T: Copy + PartialOrd>(list: &mut [T]) {
-    todo!()
+pub fn bubble_sort<T: PartialOrd>(list: &mut [T]) {
+    for i in 0..list.len() - 1 {
+        for j in i + 1..list.len() {
+            if list[i] > list[j] {
+                list.swap(i, j);
+            }
+        }
+    }
 }
 
 /// TODO: Document algorithm.
-fn insertion_sort<T: Copy + PartialOrd>(list: &mut [T]) {
+#[allow(dead_code)]
+pub fn insertion_sort<T: Copy + PartialOrd>(_list: &mut [T]) {
     todo!()
 }
 
 /// TODO: Document algorithm.
 /// TODO: Non semi-in-place.
-fn merge_sort<T: Copy + PartialOrd>(items: &mut [T]) {
+pub fn merge_sort<T: Copy + PartialOrd>(items: &mut [T]) {
     let len = items.len();
 
     // Base case.
@@ -39,8 +46,8 @@ fn merge_sort<T: Copy + PartialOrd>(items: &mut [T]) {
         }
     }
 
-    // Copy leftovers e.g. for `items` with value `[2,3,1]`, `left` is `[2, 3]` and
-    // right is `[1]`, so `[3]` has not been accounted for in `result`.
+    // Copy leftovers e.g. for `items` with value `[2, 3, 1]`, `left` is `[2, 3]`
+    // and right is `[1]`, so `[3]` has not been accounted for in `result`.
     for l in l_iter {
         result.push(*l);
     }
@@ -61,8 +68,27 @@ mod test {
     use super::*;
 
     #[test]
-    #[ignore]
-    fn test_bubble_sort() {}
+    fn test_bubble_sort() {
+        let list1 = &mut [1, 3, 2, 11, 6, 8, 9, 2, 3, 1];
+        bubble_sort(list1);
+        assert_eq!(&mut [1, 1, 2, 2, 3, 3, 6, 8, 9, 11], list1);
+
+        let list2 = &mut [1, 3, 2, 11, 6, 8, 9, -1, 2, 3, 1];
+        bubble_sort(list2);
+        assert_eq!(&mut [-1, 1, 1, 2, 2, 3, 3, 6, 8, 9, 11], list2);
+
+        let list3 = &mut [1.01, 1.00, 10.5, 0.8, 0.001];
+        bubble_sort(list3);
+        assert_eq!(&mut [0.001, 0.8, 1.00, 1.01, 10.5], list3);
+
+        let list4 = &mut ['a', 'c', 'b'];
+        bubble_sort(list4);
+        assert_eq!(&mut ['a', 'b', 'c'], list4);
+
+        let list5 = &mut ["Test", "A old day", "A new day"];
+        bubble_sort(list5);
+        assert_eq!(&mut ["A new day", "A old day", "Test"], list5);
+    }
 
     #[test]
     #[ignore]
@@ -74,9 +100,9 @@ mod test {
         merge_sort(list1);
         assert_eq!(&mut [1, 1, 2, 2, 3, 3, 6, 8, 9, 11], list1);
 
-        let list2 = &mut [1, 3, 2, 11, 6, 8, 9, 2, 3, 1];
+        let list2 = &mut [1, 3, 2, 11, 6, 8, -1, 9, 2, 3, 1];
         merge_sort(list2);
-        assert_eq!(&mut [1, 1, 2, 2, 3, 3, 6, 8, 9, 11], list2);
+        assert_eq!(&mut [-1, 1, 1, 2, 2, 3, 3, 6, 8, 9, 11], list2);
 
         let list3 = &mut [1.01, 1.00, 10.5, 0.8, 0.001];
         merge_sort(list3);
