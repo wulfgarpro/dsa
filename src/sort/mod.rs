@@ -58,9 +58,7 @@ pub fn merge_sort<T: Copy + PartialOrd>(items: &mut [T]) {
     assert!(len == result.len());
 
     // Copy the result to the original `items`.
-    for i in 0..len {
-        items[i] = result[i];
-    }
+    items[..len].copy_from_slice(&result[..len]);
 }
 
 #[cfg(test)]
