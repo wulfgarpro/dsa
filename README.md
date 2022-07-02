@@ -10,4 +10,16 @@ Data Structures & Algorithms in Rust.
 
 ## Search
 
-TODO
+- [ ] Binary search
+- [ ] Depth-first search
+- [ ] Breadth-first search
+
+## Data Structures
+
+- [ ] Linked list
+- [ ] Stack
+- [ ] Queue
+- [ ] Hash Table
+- [ ] Tree
+- [ ] Heap
+- [ ] Graph
