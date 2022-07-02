@@ -1,12 +1,27 @@
-//! Sorting algorithms.
+//! # sort algorithms.
+//!
+//! `sort` defines various sorting algorithms on generic types.
 
-/// TODO: Document algorithm.
+/// Repeatedly step through the list and compare adjacent elements and swap them
+/// if they are in the wrong order. Repeat the pass through until the list is
+/// sorted.
+///
+/// Worst-case performance: O(n^2) comparisons, O(n^2) swaps.
+/// Best-case performance: O(n) comparisons, O(1) swaps.
+/// Worst-case space complexity: O(n) total, O(1) auxiliary.
 pub fn bubble_sort<T: PartialOrd>(list: &mut [T]) {
-    for i in 0..list.len() - 1 {
-        for j in i + 1..list.len() {
-            if list[i] > list[j] {
-                list.swap(i, j);
+    loop {
+        let mut swapped = false;
+        for i in 0..list.len() - 1 {
+            if list[i] > list[i + 1] {
+                list.swap(i, i + 1);
+                swapped = true;
             }
+        }
+        // If no swaps occurred, the list is sorted and no further pass through is
+        // necessary.
+        if !swapped {
+            break;
         }
     }
 }
@@ -55,7 +70,7 @@ pub fn merge_sort<T: Copy + PartialOrd>(items: &mut [T]) {
         result.push(*r);
     }
 
-    assert!(len == result.len());
+    assert_eq!(len, result.len());
 
     // Copy the result to the original `items`.
     items[..len].copy_from_slice(&result[..len]);
