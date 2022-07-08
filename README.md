@@ -5,8 +5,12 @@ Data Structures & Algorithms in Rust.
 ## Sort
 
 - [X] Bubble sort
-- [ ] Insertion Sort
+- [X] Insertion Sort
+- [ ] Selection Sort
 - [X] Merge Sort
+- [ ] Heapsort
+- [ ] Quicksort
+- [ ] Timsort
 
 ## Search
 
